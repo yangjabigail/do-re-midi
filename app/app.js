@@ -1,10 +1,10 @@
-import { generateMidi } from "./modules/midi";
 const Application = function () {
   this.initA4();
   this.tuner = new Tuner(this.a4);
   this.notes = new Notes(".notes", this.tuner);
   this.meter = new Meter(".meter");
   this.frequencyBars = new FrequencyBars(".frequency-bars");
+  this.midi = new MidiUtil(".midiUtil");
   this.update({
     name: "A",
     frequency: this.a4,

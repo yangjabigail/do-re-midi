@@ -1,18 +1,29 @@
+/**
+ * @param {string} selector
+ * @constructor
+ */
+const MidiUtil = function(selector) {
+  this.writeSampleTrack();
+}
+
 // Generate and save MIDI notes to files based on the tuner output
-import MidiWriter from '../../node_modules/midi-writer-js';
-export function generateMidi() {
+MidiUtil.prototype.writeSampleTrack = function () {
+  var MidiWriter = require('midi-writer-js');
   console.log("GOT HERE");
+  var tracks = [];
 
   // Define an instrument (optional):
-  track.addEvent(new MidiWriter.ProgramChangeEvent({instrument: 1}));
+  tracks[0] = new MidiWriter.Track();
+  tracks[0].addEvent(new MidiWriter.ProgramChangeEvent({instrument: 1}));
   
   // Add some notes:
   const note = new MidiWriter.NoteEvent({pitch: ['C4', 'D4', 'E4'], duration: '4'});
-  track.addEvent(note);
+  tracks[0].addEvent(note);
   
   // Generate a data URI
-  const write = new MidiWriter.Writer(track);
+  const write = new MidiWriter.Writer(tracks);
   console.log(write.dataUri());
+  module.exports = write;
 }
 
 // Request MIDI access
