@@ -4,6 +4,7 @@ const Application = function () {
   this.notes = new Notes(".notes", this.tuner);
   this.meter = new Meter(".meter");
   this.frequencyBars = new FrequencyBars(".frequency-bars");
+  this.midi = new MidiUtil(".midiUtil");
   this.update({
     name: "A",
     frequency: this.a4,
@@ -21,6 +22,9 @@ Application.prototype.initA4 = function () {
 
 Application.prototype.start = function () {
   const self = this;
+
+  console.log("HI");
+  generateMidi();
 
   this.tuner.onNoteDetected = function (note) {
     if (self.notes.isAutoMode) {
